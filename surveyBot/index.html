@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" ng-app="surveyBot">
+  <head>
+    <meta charset="UTF-8">
+    <title>Survey Bot</title>
+    <script src="lib/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/QuestionsController.js"></script>
+    <script src="controllers/ResultsController.js"></script>
+    <script src="services/ResponsesFactory.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Survey Bot</h2>
+      <div class="row" ng-controller="QuestionsCtrl">
+        <div class="col-md-4">
+          <div class="form-group">
+            <form ng-submit="ResponsesFactory.addResponse()" class="form-inline" role="form">
+              <div class="form-group">
+                <label>Do you prefer cats or dogs?:
+                  <select ng-model="ResponsesFactory.questionResponse">
+                    <option value="cats">cats</option>
+                    <option value="dogs">dogs</option>
+                  </select>
+                </label>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-12">
+              <h2 ng-show="submitted">Thank You</h2>
+          </div>
+        </div>
+
+        <div class="row" ng-controller="ResultsCtrl">
+          <div class="col-md-12">
+            <span>
+              <h2>Survey Results</h2>
+              <p ng-repeat="item in responses">
+                {{ item.answer }}
+              </p>
+            </span>
+          </div>
+          <form >
+            <button type="submit">Back</button>
+          </form>
+        </div>
+
+
+
+
+      </div>
+    </div>
+  </body>
+</html>
